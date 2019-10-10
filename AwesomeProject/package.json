@@ -19,8 +19,11 @@
     "react-native-web": "^0.11.7"
   },
   "devDependencies": {
+    "appium": "^1.15.0",
+    "appium-doctor": "^1.12.1",
     "babel-preset-expo": "^7.0.0",
-    "jest-expo": "^35.0.0"
+    "jest-expo": "^35.0.0",
+    "wd": "^1.11.4"
   },
   "private": true
 }
