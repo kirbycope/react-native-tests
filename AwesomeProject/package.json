@@ -22,7 +22,9 @@
     "appium": "^1.15.0",
     "appium-doctor": "^1.12.1",
     "babel-preset-expo": "^7.0.0",
+    "chromedriver": "^77.0.0",
     "jest-expo": "^35.0.0",
+    "selenium-webdriver": "^4.0.0-alpha.5",
     "wd": "^1.11.4"
   },
   "private": true
