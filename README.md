@@ -3,6 +3,9 @@ React Native app with examples of Unit Test and UI tests using Jest, Selenium, a
 
 ## Required Software
 1. Download and install [Android Studio](https://developer.android.com/studio)
+   * Set your [environment variables](https://developer.android.com/studio/command-line/variables)
+      * ANDROID_HOME: path to the sdk folder
+      * ANDROID_SDK_ROOT: path to the sdk folder
 1. (OSX Only) Install [XCode](https://apps.apple.com/us/app/xcode/id497799835?mt=12) from the Apple Store
    * Install [XCode Command-line Tools](https://developer.apple.com/downloads)
 1. Download and install [VS Code](https://code.visualstudio.com/)
@@ -58,33 +61,32 @@ With [Expo](https://expo.io/) tools, services, and React, you can build, deploy,
 
     describe('SomeComponent', () => {
     
-    // Before all tests run the following...
-    beforeAll(async () => {
-        try {
-        await driver.init(CAPABILITIES);
-        await driver.sleep(2000);
-        } catch (err) {
-        console.log(err);
-        }
-    });
+        // Before all tests run the following...
+        beforeAll(async () => {
+            try {
+            await driver.init(CAPABILITIES);
+            await driver.sleep(2000);
+            } catch (err) {
+            console.log(err);
+            }
+        });
 
-    // After all tests run the following...
-    afterAll(async () => {
-        try {
-        await driver.quit();
-        }
-        catch (err) {
-        console.error(err);
-        }
-    });
+        // After all tests run the following...
+        afterAll(async () => {
+            try {
+            await driver.quit();
+            }
+            catch (err) {
+            console.error(err);
+            }
+        });
 
-    // Test
-    test('renders some use case', async () => {
-        expect(await driver.hasElementByAccessibilityId('testview')).toBe(true);
-    });
+        // Test
+        test('renders some use case', async () => {
+            expect(await driver.hasElementByAccessibilityId('testview')).toBe(true);
+        });
 
     });
-
     ```
 1. Update `app.json` to include
     ```json
@@ -125,7 +127,7 @@ An [Android Virtual Device](https://developer.android.com/studio/run/managing-av
 
 ### Setup Device
 1. Select 'Start Session'
-   * This will side load the app and steup the phone for testing with Appium
+   * This will sideload the app and steup the phone for testing with Appium
 1. Select 'X' (Quit Session & Close Inspector)
 1. Close the Insepctor window
 
@@ -139,5 +141,9 @@ An [Android Virtual Device](https://developer.android.com/studio/run/managing-av
    * (Optional) Update your Appium Desktop Inspector configuration(s)
 
 ## Run the Test
-Note: The Expo session is not needed and can be closed now if you are following along with this readme.
+The Expo session is not needed and can be closed now if you are following along with this readme. Android studio can also be closed at this point.
+<br/>The Android Emulator can be launched via command line, `emulator -avd avd_name [ {-option [value]} … ]`
+<br/>For example, `C:\Android\SDK\emulator\emulator.exe -avd Nexus_5X_API_29_x86`
+<br/>Note: Closing the command prompt will close the Emulator.
+
 To execute the test, run the command `npm run test`
