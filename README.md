@@ -56,21 +56,21 @@ With [Expo](https://expo.io/) tools, services, and React, you can build, deploy,
     jasmine.DEFAULT_TIMEOUT_INTERVAL = 60000;
 
     const SERVER_PORT = 4723;
-    const SERVER_URL = 'http://localhost';
+    const SERVER_URL = '0.0.0.0';
     const CAPABILITIES = {
         platformName: 'Android',
         deviceName: 'Android Emulator',
         app: 'C:\\Android\\APK\\AwesomeProject-signed.apk'
     };
 
-    const driver = wd.promiseChainRemote(SERVER_URL, SERVER_PORT);
-
     // describe(name, fn) creates a block that groups together several related tests.
     describe('SomeComponent', () => {
-    
+        let driver;
+
         // Before all tests run the following...
         beforeAll(async () => {
             try {
+                driver = wd.promiseChainRemote(SERVER_URL, SERVER_PORT);
                 await driver.init(CAPABILITIES);
                 await driver.sleep(2000);
             } catch (err) {
@@ -113,6 +113,14 @@ An [Android Virtual Device](https://developer.android.com/studio/run/managing-av
 1. Type `a` to sideload the app
 1. Enable drawing over app as prompted
 
+### Build the Binary to Test
+1. To create an .apk, run the command `expo build:android -t apk`
+   * This requires a free Expo account
+   * Let Expo handle the process when prompted
+   * If you get the error `connect ECONNREFUSED 127.0.0.1:19001` then run the command `npm start` in a new command window and try again
+1. Download the .apk from Expo.io
+1. Replace the value for `CAPABILITIES.app` with the downloaded file path
+
 ### Start Appium Server
 1. Open Appium Desktop
 1. Select 'Start Server'
@@ -120,12 +128,12 @@ An [Android Virtual Device](https://developer.android.com/studio/run/managing-av
 #### Save Capabilities
 1. Click the '🔍' (Start Inspector Session) button in the toolbar
 1. Click the '🖉' (Edit Raw JSON`) button in the 'JSON Representation' pane
-1. Update the content to include
+1. Update the content to include (change the app path as needed)
     ```json
     {
-    "platformName": "Android",
-    "deviceName": "Android Emulator",
-    "app": "C:\\Android\\APK\\AwesomeProject-signed.apk"
+        "platformName": "Android",
+        "deviceName": "Android Emulator",
+        "app": "C:\\Android\\APK\\AwesomeProject-signed.apk"
     }
     ```
 1. Save your configuration
@@ -135,15 +143,6 @@ An [Android Virtual Device](https://developer.android.com/studio/run/managing-av
    * This will sideload the app and steup the phone for testing with Appium
 1. Select 'X' (Quit Session & Close Inspector)
 1. Close the Insepctor window
-
-### Build the Binary to Test
-1. To create an .apk, run the command `expo build:android -t apk`
-   * This requires a free Expo account
-   * Let Expo handle the process when prompted
-   * If you get the error `connect ECONNREFUSED 127.0.0.1:19001` then run the command `npm start` in a new command window and try again
-1. Download the .apk from Expo.io
-1. Replace the value for `CAPABILITIES.app` with the downloaded file path
-   * (Optional) Update your Appium Desktop Inspector configuration(s)
 
 ### Run the Test
 The Expo session is not needed and can be closed now if you are following along with this readme. Android studio can also be closed at this point.
