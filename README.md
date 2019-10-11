@@ -30,6 +30,23 @@ With [Expo](https://expo.io/) tools, services, and React, you can build, deploy,
         "preset": "jest-expo"
     }
     ```
+1. Create a folder called `__tests__`
+
+## Unit Testing
+1. Create a new file called `App.Unit.js`
+2. Paste in the following code
+    ```javascript
+    import React from 'react';
+    import renderer from 'react-test-renderer';
+    import App from '../App';
+    describe('<App />', () => {
+        it('has 1 child', () => {
+            const tree = renderer.create(<App />).toJSON();
+            expect(tree.children.length).toBe(1);
+        });
+    });
+    ```
+3. To execute the test, run the command `npm run test App.Unit`
 
 ## Mobile UI Testing
 
