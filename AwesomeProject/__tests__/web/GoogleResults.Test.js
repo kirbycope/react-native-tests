@@ -37,7 +37,8 @@ describe('Google Results', () => {
 
     // Act: Enter the text and submit the form
     await GoogleHomePage.searchFor(driver, text);
-    await driver.findElement(GoogleResultsPage.aFirstResult).click();
+    var link = await GoogleResultsPage.aFirstResult(driver);
+    await link.click();
     await driver.wait(until.urlContains(text), 2500);
 
     // Assert: Ensure the current page is the expected one

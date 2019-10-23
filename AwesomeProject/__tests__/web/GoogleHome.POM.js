@@ -1,15 +1,31 @@
-import { By, WebDriver } from 'selenium-webdriver'
+import { By, until, WebDriver } from 'selenium-webdriver'
 
-// Properties
+//#region Properties
+
 export const url = 'https://www.google.com/';
 
-// Selectors
+//#endregion
 
-export const imgLogo = By.id('hplogo');
-export const inputQuery = By.css('input[name="q"]');
-export const buttonSubmit = By.xpath('//input[@value="Google Search"]');
+//#region Selectors
 
-// Functions
+export const imgLogo = async (driver) => {
+    var element = await driver.findElement(By.id('hplogo'));
+    return element;
+};
+
+export const inputQuery = async (driver) => {
+    var element = await driver.findElement(By.css('input[name="q"]'));
+    return element;
+};
+
+export const buttonSubmit = async (driver) => {
+    var element = await driver.findElements(By.xpath('//input[@value="Google Search"]'));
+    return element[1];
+};
+
+//#endregion
+
+//#region Functions
 
 /**
  * Searches for the given text on Google.
@@ -20,11 +36,16 @@ export const searchFor = async (driver, text) => {
     // Open the page
     await driver.get(url);
     // Input some text
-    await driver.findElement(inputQuery).sendKeys(text);
+    var input = await inputQuery(driver);
+    await input.sendKeys(text);
     // Click out of input to dismiss the auto-suggestion <span> covering the submit button
-    await driver.findElement(imgLogo).click();
-    // There are two buttons that are almost identical, find them
-    var submitButtons = await driver.findElements(buttonSubmit);
-    // Click the second one
-    await submitButtons[1].click();
+    var img = await imgLogo(driver);
+    await img.click();
+    // Click the submit button
+    var submit = await buttonSubmit(driver);
+    submit.click();
+    // Wait a moment for results to load
+    await driver.wait(until.urlContains("search?"), 2500);
 }
+
+//#endregion

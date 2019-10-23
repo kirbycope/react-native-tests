@@ -1,4 +1,10 @@
 import { By } from 'selenium-webdriver'
 
-// Selector(s)
-export const aFirstResult = By.css('div[class="r"] > a');
+//#region Selector(s)
+
+export const aFirstResult = async (driver) => {
+    var element = await driver.findElement(By.xpath('//h3[text()="Timothy Cope - Home"]'));
+    return element;
+};
+
+//#endregion
