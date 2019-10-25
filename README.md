@@ -20,7 +20,7 @@ With [Expo](https://expo.io/) tools, services, and React, you can build, deploy,
 
 ### Add Jest to Project
 [Jest](https://docs.expo.io/versions/latest/guides/testing-with-jest/) is a delightful JavaScript Testing Framework with a focus on simplicity. It works with projects using: Babel, TypeScript, Node, React, Angular, Vue and more!
-1. To install Jest, run the command `npm i jest-expo --save-dev`
+1. To install Jest, run the command `npm install --save-dev jest-expo`
 1. Update package.json to include:
     ```json
     "scripts": {
@@ -174,7 +174,7 @@ To execute the test, run the command `npm run test App.Appium`
 
 ### Add Selenium to Project
 [Selenium](https://www.seleniumhq.org/) automates browsers. That's it! What you do with that power is entirely up to you. Primarily, it is for automating web applications for testing purposes, but is certainly not limited to just that. Boring web-based administration tasks can (and should!) be automated as well.
-1. To install selenium, run the command `npm install --save-dev selenium-webdriver chromedriver`
+1. To install Selenium, run the command `npm install --save-dev selenium-webdriver chromedriver`
    * [selenium-webdriver](https://www.npmjs.com/package/selenium-webdriver) is the official WebDriver JavaScript bindings from the Selenium project.
    * [chromedriver](https://www.npmjs.com/package/chromedriver) is the ChromeDriver for Selenium.
 1. Download `chromedriver` from [Google](https://sites.google.com/a/chromium.org/chromedriver/downloads)
@@ -221,5 +221,65 @@ To execute the test, run the command `npm run test App.Appium`
     });
 
     ```
+
 ### Run the Test
 To execute the test, run the command `npm run test App.Selenium`
+
+## Behaviour Driven Design
+
+### Add Cucumber to Project
+[jest-cucumber](https://github.com/bencompton/jest-cucumber) is an alternative to Cucumber.js that runs on top on Jest. Instead of using describe and it blocks, you instead write a Jest test for each scenario, and then define Given, When, and Then step definitions inside of your Jest tests. jest-cucumber then allows you to link these Jest tests to your feature files and ensure that they always stay in sync.
+1. To install Jest-Cucumber, run the command `npm install --save-dev jest-cucumber`
+1. Update package.json to include:
+    ```json
+    "jest": {
+        "testMatch": [
+        "**/*.steps.js"
+        ]
+    },
+    ```
+1. Create a folder called `bdd` under `__tests__`
+1. Create a folder called `features` under `bdd`
+1. Create a new file in `features` called `App.Cucumber.feature`
+1. Paste in the following content
+    ```gherkin
+    Feature: Cucumber Example
+        In order to do show BDD
+        As a developer
+        I want to run a Cucumber test
+
+        Scenario: Run test
+            Given I arrange some data
+            When I act on that data
+            Then I assert on the output
+    ```
+1. Create a folder called `steps` under `bdd`
+1. Create a new file in `steps` called `App.Cucumber.steps.js`
+1. Paste in the following content
+    ```javascript
+    import { defineFeature, loadFeature } from 'jest-cucumber';
+
+    const feature = loadFeature('./__tests__/bdd/features/App.Cucumber.feature');
+
+    defineFeature(feature, test => {
+
+        test('Run test', ({ given, when, then }) => {
+
+            given('I arrange some data', () => {
+                console.log('thing 1');
+            });
+
+            when('I act on that data', () => {
+                console.log('thing 2');
+            });
+
+            then('I assert on the output', () => {
+                console.log('thing 3');
+            });
+
+        });
+    });
+    ```
+
+### Run the Test
+To execute the test, run the command `npm run test App.Cucumber`
