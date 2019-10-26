@@ -5,7 +5,7 @@ export const SetUpChromeDriver = async () => {
     return driver;
 }
 
-export const TearDownChromeDriver = async (driver) => {
+export const TearDownDriver = async (driver) => {
     await driver.quit();
 }
 

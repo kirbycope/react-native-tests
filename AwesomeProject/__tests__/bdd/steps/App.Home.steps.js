@@ -1,8 +1,14 @@
 import { defineFeature, loadFeature } from 'jest-cucumber';
 
+import * as Appium from '../helpers/Appium'
 import * as Selenium from '../helpers/Selenium'
 
+import * as AppHomePage from '../../mobile/AppHome.POM';
+import * as GoogleHomePage from '../../web/GoogleHome.POM';
+
 const feature = loadFeature('./__tests__/bdd/features/App.Home.feature');
+
+jasmine.DEFAULT_TIMEOUT_INTERVAL = 60000;
 
 defineFeature(feature, test => {
 
@@ -31,13 +37,23 @@ defineFeature(feature, test => {
         });
 
         then(/^I should see (.*)$/, async (element) => {
+            let displayed;
+
             if (device === 'android') {
-                console.log('ToDo: Assert element ' + element + ' is displayed on android.');
+                if (element === 'textGetStarted') {
+                    var textGetStarted = await AppHomePage.textGetStarted(driver);
+                    displayed = await textGetStarted.isDisplayed();
+                }
+                await Appium.TearDownDriver(driver);
             }
             else if (device === 'chrome') {
-                console.log('ToDo: Assert element ' + element + ' is displayed in chrome.');
-                await Selenium.TearDownChromeDriver(driver);
+                if (element === 'imgLogo') {
+                    var imgLogo = await GoogleHomePage.imgLogo(driver);
+                    displayed = await imgLogo.isDisplayed();
+                }
+                await Selenium.TearDownDriver(driver);
             }
+            expect(displayed).toBe(true);
         });
 
     });
