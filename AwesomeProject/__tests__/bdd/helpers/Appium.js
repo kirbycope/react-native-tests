@@ -11,7 +11,7 @@ const CAPABILITIES = {
 export const SetUpAndroidDriver = async () => {
     var driver = wd.promiseChainRemote(SERVER_URL, SERVER_PORT);
     await driver.init(CAPABILITIES);
-    await driver.sleep(2000);
+    await driver.sleep(2500);
     return driver;
 }
 

@@ -20,19 +20,26 @@ defineFeature(feature, test => {
         given(/^I am an end-user on (.*)$/, async (p0) => {
             device = p0;
             if (device === 'android') {
-                console.log('ToDo: Open page on android.');
+                driver = await Appium.SetUpAndroidDriver();
             }
             else if (device === 'chrome') {
                 driver = await Selenium.SetUpChromeDriver();
+            }
+            else {
+                throw "NotImplementedException";
             }
         });
 
         when('I open the Home page', async () => {
             if (device === 'android') {
-                console.log('ToDo: Open the Home page on android.');
+                // the "home" page is loaded by starting the app
+                driver.sleep(2500);
             }
             else if (device === 'chrome') {
                 await Selenium.OpenPage(driver, 'https://www.google.com/');
+            }
+            else {
+                throw "NotImplementedException";
             }
         });
 
@@ -52,6 +59,9 @@ defineFeature(feature, test => {
                     displayed = await imgLogo.isDisplayed();
                 }
                 await Selenium.TearDownDriver(driver);
+            }
+            else {
+                throw "NotImplementedException";
             }
             expect(displayed).toBe(true);
         });
