@@ -17,6 +17,10 @@ React Native testing, using Cucumber, for both Mobile and Web.
 
 ## Initial Setup
 
+### Install Jest
+[Jest](https://jestjs.io/) is a delightful JavaScript Testing Framework with a focus on simplicity. It works with projects using: Babel, TypeScript, Node, React, Angular, Vue and more!
+1. To install jest using npm, run the command `npm install --save-dev jest`
+
 ### Setup Android Emulator
 An [Android Virtual Device](https://developer.android.com/studio/run/managing-avds) (AVD) is a configuration that defines the characteristics of an Android phone, tablet, Wear OS, Android TV, or Automotive OS device that you want to simulate in the Android Emulator. The AVD Manager is an interface you can launch from Android Studio that helps you create and manage AVDs.
 1. Set your [environment variables](https://developer.android.com/studio/command-line/variables)
