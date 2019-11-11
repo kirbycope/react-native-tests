@@ -5,10 +5,10 @@ Feature: Home feature
 
     Scenario Outline: Open Home page
         Given I am an end-user on <device>
-        When I open the Home page
+        When I open the <pageName> page
         Then I should see <element>
 
         Examples:
-            | device  | element        |
-            | chrome  | imgLogo        |
-            | android | textGetStarted |
+            | device  | pageName | element        |
+            | chrome  | Home     | imgLogo        |
+            | android | Home     | textGetStarted |

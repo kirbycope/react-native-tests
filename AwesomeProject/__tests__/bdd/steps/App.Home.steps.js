@@ -1,7 +1,7 @@
 import { defineFeature, loadFeature } from 'jest-cucumber';
-
 import * as Appium from '../helpers/Appium'
 import * as Selenium from '../helpers/Selenium'
+import * as CommonSteps from '../steps/Common.steps'
 
 import * as AppHomePage from '../../mobile/AppHome.POM';
 import * as GoogleHomePage from '../../web/GoogleHome.POM';
@@ -19,28 +19,11 @@ defineFeature(feature, test => {
 
         given(/^I am an end-user on (.*)$/, async (p0) => {
             device = p0;
-            if (device === 'android') {
-                driver = await Appium.SetUpAndroidDriver();
-            }
-            else if (device === 'chrome') {
-                driver = await Selenium.SetUpChromeDriver();
-            }
-            else {
-                throw "NotImplementedException";
-            }
+            driver = await CommonSteps.IAmAnEndUserOnDevice(device);
         });
 
-        when('I open the Home page', async () => {
-            if (device === 'android') {
-                // the "home" page is loaded by starting the app
-                driver.sleep(2500);
-            }
-            else if (device === 'chrome') {
-                await Selenium.OpenPage(driver, 'https://www.google.com/');
-            }
-            else {
-                throw "NotImplementedException";
-            }
+        when(/^I open the (.*) page$/, async () => {
+            await CommonSteps.IOpenPage(driver, 'Home');
         });
 
         then(/^I should see (.*)$/, async (element) => {

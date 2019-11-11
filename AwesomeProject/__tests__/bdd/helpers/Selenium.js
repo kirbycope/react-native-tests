@@ -1,4 +1,5 @@
 import { Builder } from 'selenium-webdriver'
+require('chromedriver')
 
 export const SetUpChromeDriver = async () => {
     var driver = await new Builder().forBrowser('chrome').build();

@@ -1,11 +1,5 @@
 import { By, until, WebDriver } from 'selenium-webdriver'
 
-//#region Properties
-
-export const url = 'https://www.google.com/';
-
-//#endregion
-
 //#region Selectors
 
 export const imgLogo = async (driver) => {
@@ -33,18 +27,10 @@ export const buttonSubmit = async (driver) => {
  * @param { string } text The text to search for.
  */
 export const searchFor = async (driver, text) => {
-    // Open the page
     await driver.get(url);
-    // Input some text
-    var input = await inputQuery(driver);
-    await input.sendKeys(text);
-    // Click out of input to dismiss the auto-suggestion <span> covering the submit button
-    var img = await imgLogo(driver);
-    await img.click();
-    // Click the submit button
-    var submit = await buttonSubmit(driver);
-    submit.click();
-    // Wait a moment for results to load
+    await inputQuery(driver).sendKeys(text);
+    await imgLogo(driver).click();
+    await buttonSubmit(driver).click();
     await driver.wait(until.urlContains("search?"), 2500);
 }
 
