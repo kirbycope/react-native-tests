@@ -1,4 +1,5 @@
 import { Builder } from 'selenium-webdriver'
+requestAnimationFrame('chromedriver')
 
 jasmine.DEFAULT_TIMEOUT_INTERVAL = 60000;
 

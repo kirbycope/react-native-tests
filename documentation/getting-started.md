@@ -30,10 +30,10 @@ With [Expo](https://expo.io/) tools, services, and React, you can build, deploy,
         "preset": "jest-expo"
     }
     ```
-1. Create a folder called `__tests__`
 
-## Unit Testing
-1. Create a new file called `App.Unit.js`
+## Snapshot Testing
+1. Create a folder called `__tests__`
+1. Create a new file called `App.Snapshot.js`
 2. Paste in the following code
     ```javascript
     import React from 'react';
@@ -47,7 +47,7 @@ With [Expo](https://expo.io/) tools, services, and React, you can build, deploy,
         });
     });
     ```
-3. To execute the test, run the command `npm run test App.Unit`
+3. To execute the test, run the command `npm run test App.Snapshot`
 
 ## Mobile UI Testing
 
@@ -177,13 +177,11 @@ To execute the test, run the command `npm run test App.Appium`
 1. To install Selenium, run the command `npm install --save-dev selenium-webdriver chromedriver`
    * [selenium-webdriver](https://www.npmjs.com/package/selenium-webdriver) is the official WebDriver JavaScript bindings from the Selenium project.
    * [chromedriver](https://www.npmjs.com/package/chromedriver) is the ChromeDriver for Selenium.
-1. Download `chromedriver` from [Google](https://sites.google.com/a/chromium.org/chromedriver/downloads)
-1. Unarchive the chromedriver and add its directory to your env::PATH variable
-   * You will need to download additional components to work with each of the major browsers. The drivers for Chrome, Firefox, and Microsoft's IE and Edge web browsers are all standalone executables that should be placed on your system [PATH](http://en.wikipedia.org/wiki/PATH_%28variable%29). Apple's safaridriver is shipped with Safari 10 for OS X El Capitan and macOS Sierra. You will need to enable Remote Automation in the Develop menu of Safari 10 before testing.
 1. Create a new file in `__tests__` called `App.Selenium.js`
 1. Paste in the following content
     ```javascript
     import { Builder } from 'selenium-webdriver'
+    require('chromedriver')
 
     jasmine.DEFAULT_TIMEOUT_INTERVAL = 60000;
 
