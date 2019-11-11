@@ -1,6 +1,8 @@
 # react-native-tests
 React Native testing, using Jest and Cucumber, with examples for both Mobile and Web.
 
+![Alt text](/../master/react-native-tests.png?raw=true "react-native-tests")
+
 ## Required Software
 1. Download and install [VS Code](https://code.visualstudio.com/)
     * Visual Studio Code is a code editor redefined and optimized for building and debugging modern web and cloud applications.
