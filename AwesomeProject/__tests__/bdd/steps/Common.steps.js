@@ -3,6 +3,7 @@ import * as Selenium from '../helpers/Selenium'
 
 const baseUrl = 'https://www.google.com';
 
+/** Sets up the appropriate WebDriver for the given device */
 export const IAmAnEndUserOnDevice = async (device) => {
     if (device === 'android') {
         driver = await Appium.SetUpAndroidDriver();
@@ -16,6 +17,7 @@ export const IAmAnEndUserOnDevice = async (device) => {
     return driver;
 };
 
+/** Opens the given page */
 export const IOpenPage = async (driver, page) => {
     // Appium
     if (driver["_events"]) {
@@ -32,7 +34,7 @@ export const IOpenPage = async (driver, page) => {
             await Selenium.OpenPage(driver, baseUrl+'/');
         }
         else {
-            await Selenium.OpenPage(driver, driver);
+            await Selenium.OpenPage(driver, page);
         }
     }
     else {

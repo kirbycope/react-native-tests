@@ -1,20 +1,20 @@
 import wd from 'wd';
+import * as TestData from './TestData'
 
-const SERVER_PORT = 4723;
-const SERVER_URL = '0.0.0.0';
-const CAPABILITIES = {
-    platformName: 'Android',
-    deviceName: 'Android Emulator',
-    app: 'C:\\Android\\APK\\AwesomeProject-signed.apk'
-};
-
+/**
+ * Sets up the WebDriver for Android; creating a session and lauching the app.
+ */
 export const SetUpAndroidDriver = async () => {
-    var driver = wd.promiseChainRemote(SERVER_URL, SERVER_PORT);
-    await driver.init(CAPABILITIES);
+    var driver = wd.promiseChainRemote(TestData.Appium_ServerUrl, TestData.Appium_ServerPort);
+    await driver.init(TestData.Appium_Capabilities);
     await driver.sleep(5000);
     return driver;
 }
 
+/**
+ * Ends the WebDriver session and closes the app.
+ * @param {*} driver The WebDriver
+ */
 export const TearDownDriver = async (driver) => {
     await driver.quit();
 }
