@@ -6,22 +6,22 @@ export const relativeUrl = '/';
 
 //#endregion
 
-//#region Mobile Selectors
+//#region Selectors
 
-/** <textView>Open up App.js to start working on your app!</textview> */
+/** Open up App.js to start working on your app! */
 export const textGetStarted = async (driver) => {
-    var element = await driver.elementByXPath('//*[@text="Open up App.js to start working on your app!"]');
-    return element;
-};
-
-//#endregion
-
-//#region Web Selectors
-
-/** Google logo */
-export const imgLogo = async (driver) => {
-    var element = await driver.findElement(By.id('hplogo'));
-    return element;
+    var xPath = '//*[text()="Open up App.js to start working on your app!"]';
+    // Appium
+    if (driver["_events"]) {
+        return await driver.elementByXPath(xPath);
+    }
+    // Selenium
+    else if (driver['executor_']) {
+        return await driver.findElement(By.xpath(xPath));
+    }
+    else {
+        throw "NotImplementedException";
+    }
 };
 
 //#endregion

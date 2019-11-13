@@ -29,7 +29,8 @@ export const IOpenPage = async (driver, page) => {
     // Selenium
     else if (driver['executor_']) {
         if (page.toLowerCase() === 'home') {
-            await Selenium.OpenPage(driver, TestData.Selenium_BaseUrl + '/');
+            await Selenium.OpenPage(driver, TestData.Selenium_HtmlContent);
+            await driver.sleep(500);
         }
         else {
             throw "NotImplementedException";

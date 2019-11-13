@@ -17,10 +17,10 @@ export const Appium_Capabilities = {
 
 //#region Selenium
 
-/** The Base URL of the web application under test */
-export const Selenium_BaseUrl = 'https://google.com';
-
 /** The browser to test with */
 export const Selenium_Browser = 'chrome';
+
+/** The <html> content to load in the Selenium example */
+export const Selenium_HtmlContent = "data:text/html;charset=utf-8,<html><head></head><body><div>Open up App.js to start working on your app!</div></body></html>";
 
 //#endregion
