@@ -10,14 +10,13 @@ export const relativeUrl = '/';
 
 /** Open up App.js to start working on your app! */
 export const textGetStarted = async (driver) => {
-    var xPath = '//*[text()="Open up App.js to start working on your app!"]';
     // Appium
     if (driver["_events"]) {
-        return await driver.elementByXPath(xPath);
+        return await driver.elementByXPath('//*[@text="Open up App.js to start working on your app!"]');
     }
     // Selenium
     else if (driver['executor_']) {
-        return await driver.findElement(By.xpath(xPath));
+        return await driver.findElement(By.xpath('//*[text()="Open up App.js to start working on your app!"]'));
     }
     else {
         throw "NotImplementedException";
