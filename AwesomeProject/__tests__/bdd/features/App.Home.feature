@@ -10,5 +10,5 @@ Feature: Home feature
 
         Examples:
             | device  | pageName | element        |
-            | chrome  | Home     | imgLogo        |
-            | android | Home     | textGetStarted |
+            | chrome  | home     | imgLogo        |
+            | android | home     | textGetStarted |

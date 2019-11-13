@@ -4,24 +4,23 @@ import * as TestData from '../helpers/TestData'
 
 /** Sets up the appropriate WebDriver for the given device */
 export const IAmAnEndUserOnDevice = async (device) => {
-    if (device === 'android') {
-        driver = await Appium.SetUpAndroidDriver();
+    if (device.toLowerCase() === 'android') {
+        return await Appium.SetUpAndroidDriver();
     }
-    else if (device === 'chrome') {
-        driver = await Selenium.SetUpChromeDriver();
+    else if (device.toLowerCase() === 'chrome') {
+        return await Selenium.SetUpChromeDriver();
     }
     else {
         throw "NotImplementedException";
     }
-    return driver;
 };
 
 /** Opens the given page */
 export const IOpenPage = async (driver, page) => {
     // Appium
     if (driver["_events"]) {
-        if (page === 'Home') {
-            driver.sleep(2500);
+        if (page.toLowerCase() === 'home') {
+            await driver.sleep(2500);
         }
         else {
             throw "NotImplementedException";
@@ -29,7 +28,7 @@ export const IOpenPage = async (driver, page) => {
     }
     // Selenium
     else if (driver['executor_']) {
-        if (page === 'Home') {
+        if (page.toLowerCase() === 'home') {
             await Selenium.OpenPage(driver, TestData.Selenium_BaseUrl + '/');
         }
         else {
@@ -41,7 +40,7 @@ export const IOpenPage = async (driver, page) => {
     }
 };
 
-/** Tears down a driver after a scenario */
+/** Tears down a WebDriver after a scenario */
 export const TearDown = async (driver) => {
     // Appium
     if (driver["_events"]) {
@@ -54,5 +53,4 @@ export const TearDown = async (driver) => {
     else {
         throw "NotImplementedException";
     }
-    await Selenium.TearDownDriver(driver);
 }

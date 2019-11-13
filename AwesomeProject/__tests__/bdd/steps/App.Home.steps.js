@@ -1,5 +1,5 @@
 import { defineFeature, loadFeature } from 'jest-cucumber';
-import * as CommonSteps from '../steps/Common.steps'
+import * as CommonSteps from './Common'
 import * as AppHomePage from '../poms/AppHome.POM';
 jasmine.DEFAULT_TIMEOUT_INTERVAL = 60000;
 
@@ -17,15 +17,15 @@ defineFeature(feature, test => {
 
     // Scenario Outline: Open Home page
     test('Open Home page', ({ given, when, then }) => {
-        
+
         // Given I am an end-user on <device>
         given(/^I am an end-user on (.*)$/, async (device) => {
             driver = await CommonSteps.IAmAnEndUserOnDevice(device);
         });
 
         // When I open the <pageName> page
-        when(/^I open the (.*) page$/, async () => {
-            await CommonSteps.IOpenPage(driver, 'Home');
+        when(/^I open the (.*) page$/, async (pageName) => {
+            await CommonSteps.IOpenPage(driver, pageName);
         });
 
         // Then I should see <element>

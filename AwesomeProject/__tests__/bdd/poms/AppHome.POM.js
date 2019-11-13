@@ -1,7 +1,4 @@
-import { By, until, WebDriver } from 'selenium-webdriver'
-import * as Appium from '../helpers/Appium'
-import * as Selenium from '../helpers/Selenium'
-import * as TestData from '../helpers/TestData'
+import { By } from 'selenium-webdriver'
 
 //#region Properties
 
