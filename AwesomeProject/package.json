@@ -10,6 +10,16 @@
   },
   "jest": {
     "preset": "jest-expo",
+    "reporters": [
+      "default",
+      [
+        "jest-trx-results-processor",
+        {
+          "outputFile": "../test-results.trx",
+          "defaultUserName": "anonymous"
+        }
+      ]
+    ],
     "testMatch": [
       "**/*.steps.js"
     ]
@@ -29,6 +39,7 @@
     "jest": "^24.9.0",
     "jest-cucumber": "^2.0.11",
     "jest-expo": "^35.0.0",
+    "jest-trx-results-processor": "^1.0.2",
     "selenium-webdriver": "^4.0.0-alpha.5",
     "wd": "^1.11.4"
   },
