@@ -19,6 +19,13 @@ React Native testing, using Jest and Cucumber, with examples for both Mobile and
 
 ## Initial Setup
 
+### Clone this Repo
+1. Navigate to [react-native-tests](../../)
+1. Select the 'Clone or download' button
+1. Select 'Open in Desktop'
+    * This should open the GitHub Desktop application and allow you to clone the repo from GitHub to your local disk drive
+1. Open the `react-native-tests\AwesomeProject` folder using VS Code
+
 ### Install Dependencies
 1. Open the command prompt
     * In Visual Studio Code the shortcut is [Ctrl]+[Shift]+[C]
